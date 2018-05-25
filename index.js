@@ -53,7 +53,7 @@ function checkCollision(rock) {
 }
 
 function createRock(x) {
-  debugger
+  //debugger
   const rock = document.createElement('div')
 
   rock.className = 'rock'
@@ -66,14 +66,14 @@ function createRock(x) {
    * Now that we have a rock, we'll need to append
    * it to GAME and move it downwards.
    */
-   GAME.appendChild(rock);
+   GAME.appendChild(rock)
   /**
    * This function moves the rock. (2 pixels at a time
    * seems like a good pace.)
    */
   function moveRock() {
     // implement me!
-    top = `${top += 2}`;
+    rock.style.top = `${top += 2}`;
     // (use the comments below to guide you!)
     /**
      * If a rock collides with the DODGER,
