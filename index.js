@@ -45,11 +45,10 @@ function checkCollision(rock) {
      * 3. The rock's left edge is < the DODGER's right edge,
      *    and the rock's right edge is > the DODGER's right edge
      **/
-    if ( (rockLeftEdge <= dodgerLeftEdge && rockRightEdge >= dodgerLeftEdge ) ||
+    return ( (rockLeftEdge <= dodgerLeftEdge && rockRightEdge >= dodgerLeftEdge ) ||
          (rockLeftEdge >= dodgerLeftEdge && rockRightEdge <= dodgerRightEdge) ||
-         (rockLeftEdge <= dodgerRightEdge && rockRightEdge >= dodgerRightEdge) ) {
-      return true;
-    }
+         (rockLeftEdge <= dodgerRightEdge && rockRightEdge >= dodgerRightEdge)
+    )
   }
 }
 
@@ -60,9 +59,7 @@ function createRock(x) {
   rock.style.left = `${x}px`
 
   // Hmmm, why would we have used `var` here? "top" is not a constant, it changes
-  var top = 0
-
-  rock.style.top = top
+  var top = rock.style.top = 0
 
   /**
    * Now that we have a rock, we'll need to append
@@ -75,14 +72,14 @@ function createRock(x) {
    */
   function moveRock() {
     // implement me!
-    top = `${top += 2}px`
+    top = `${top += 2}px`;
     // (use the comments below to guide you!)
     /**
      * If a rock collides with the DODGER,
      * we should call endGame()
      */
      if(checkCollision(rock)){
-       endGame();
+       return endGame();
      }
     /**
      * Otherwise, if the rock hasn't reached the bottom of
@@ -118,7 +115,7 @@ function createRock(x) {
  */
 function endGame() {
   window.removeEventListener('keydown', moveDodger);
-  gameInterval = clearInterval();
+  clearInterval(gameInterval);
   for(let i = 0; i < ROCKS.length; i++){
     ROCKS[i].remove();
   }
