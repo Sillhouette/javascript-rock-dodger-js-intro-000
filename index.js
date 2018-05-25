@@ -53,6 +53,7 @@ function checkCollision(rock) {
 }
 
 function createRock(x) {
+  debugger
   const rock = document.createElement('div')
 
   rock.className = 'rock'
