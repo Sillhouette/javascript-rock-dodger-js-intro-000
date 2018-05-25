@@ -53,62 +53,29 @@ function checkCollision(rock) {
 }
 
 function createRock(x) {
-  //debugger
   const rock = document.createElement('div')
 
   rock.className = 'rock'
   rock.style.left = `${x}px`
 
-  // Hmmm, why would we have used `var` here? "top" is not a constant, it changes
   var top = rock.style.top = 0
 
-  /**
-   * Now that we have a rock, we'll need to append
-   * it to GAME and move it downwards.
-   */
-   GAME.appendChild(rock)
-  /**
-   * This function moves the rock. (2 pixels at a time
-   * seems like a good pace.)
-   */
+  GAME.appendChild(rock)
+
   function moveRock() {
-    // implement me!
-    rock.style.top = `${top += 2}`;
-    // (use the comments below to guide you!)
-    /**
-     * If a rock collides with the DODGER,
-     * we should call endGame()
-     */
-     if(checkCollision(rock)){
-       return endGame()
-     }
-    /**
-     * Otherwise, if the rock hasn't reached the bottom of
-     * the GAME, we want to move it again.
-     */
-     //var leftNumbers = dodger.style.left.replace('px', '')
-     //var left = parseInt(leftNumbers, 10)
-     if(top < GAME_HEIGHT) {
-       window.requestAnimationFrame(moveRock)
-     }
-    /**
-     * But if the rock *has* reached the bottom of the GAME,
-     * we should remove the rock from the DOM
-     */
-     else {
-       rock.remove()
-     }
+    rock.style.top = `${top += 2}px`;
+
+    if (checkCollision(rock)) {
+      return endGame()
+    }
+
+    if (top < GAME_HEIGHT) {
+      window.requestAnimationFrame(moveRock)
+    } else {
+      rock.remove()
+    }
   }
 
-  // We should kick of the animation of the rock around here
-  window.requestAnimationFrame(moveRock)
-  // Add the rock to ROCKS so that we can remove all rocks
-  // when there's a collision
-  ROCKS.push(rock)
-
-  // Finally, return the rock element you've created
-  return rock
-}
 
 /**
  * End the game by clearing `gameInterval`,
