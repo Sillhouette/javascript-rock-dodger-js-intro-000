@@ -80,7 +80,7 @@ function createRock(x) {
      * we should call endGame()
      */
      if(checkCollision(rock)){
-       return endGame();
+       return endGame()
      }
     /**
      * Otherwise, if the rock hasn't reached the bottom of
@@ -88,7 +88,7 @@ function createRock(x) {
      */
      //var leftNumbers = dodger.style.left.replace('px', '')
      //var left = parseInt(leftNumbers, 10)
-     if(top > GAME_HEIGHT) {
+     if(top < GAME_HEIGHT) {
        window.requestAnimationFrame(moveRock)
      }
     /**
@@ -96,12 +96,12 @@ function createRock(x) {
      * we should remove the rock from the DOM
      */
      else {
-       rock.remove();
+       rock.remove()
      }
   }
 
   // We should kick of the animation of the rock around here
-  window.requestAnimationFrame(moveRock);
+  window.requestAnimationFrame(moveRock)
   // Add the rock to ROCKS so that we can remove all rocks
   // when there's a collision
   ROCKS.push(rock)
